@@ -40,4 +40,4 @@ spec:
       volumes:
         - name: components-volume
           hostPath:
-            path: /Users/sh08.job/oisix/repos/dapr-sample/samples/hello-kubernetes/components
+            path: /path/to/your/components
