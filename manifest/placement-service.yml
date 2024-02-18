@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: placement
+spec:
+  selector:
+    app: placement
+  ports:
+    - protocol: TCP
+      port: 50006
+      targetPort: 50006

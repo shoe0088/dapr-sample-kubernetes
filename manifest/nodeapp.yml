@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-with-dapr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+      - name: nodeapp
+        image: nodeapp
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 50002
+
+      - name: dapr
+        image: daprio/daprd:edge
+        command: ["./daprd"]
+        args:
+          - "-app-id"
+          - "nodeapp"
+          - "-app-port"
+          - "3000"
+          - "-placement-host-address"
+          - "placement:50006"
+          - "-dapr-grpc-port"
+          - "50002"
+          - "-components-path"
+          - "/components"
+        volumeMounts:
+          - mountPath: "/components"
+            name: components-volume
+
+      volumes:
+        - name: components-volume
+          hostPath:
+            path: /Users/sh08.job/oisix/repos/dapr-sample/samples/hello-kubernetes/components

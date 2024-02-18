@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: placement
+  labels:
+    app: placement
+spec:
+  containers:
+  - name: placement
+    image: daprio/dapr
+    command: ["./placement", "-port", "50006"]
+    ports:
+    - containerPort: 50006
