@@ -34,4 +34,4 @@ spec:
       volumes:
         - name: components-volume
           hostPath:
-            path: /path/to/your/components
+            path: ${COMPONENTS_PATH}

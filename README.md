@@ -9,8 +9,11 @@ Connection test for pub/sub dapr application on kubernetes
 # clone this repo
 git clone git@github.com:shoe0088/dapr-sample-kubernetes.git
 
-# build docker image
+# set components path
 cd dapr-sample-kubernetes
+export COMPONENTS_PATH=$(realpath components)
+
+# build docker image
 docker build ./node -t nodeapp
 docker build ./python -t pythonapp
 
